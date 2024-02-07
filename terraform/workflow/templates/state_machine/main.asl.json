@@ -1,7 +1,12 @@
 {
     "Comment": "ステートマシンの説明",
-    "StartAt": "Lambda Invoke",
+    "StartAt": "Wait",
     "States": {
+        "Wait": {
+            "Type": "Wait",
+            "Seconds": 3,
+            "Next": "Lambda Invoke"
+        },
         "Lambda Invoke": {
             "Type": "Task",
             "Resource": "arn:aws:states:::lambda:invoke",
