@@ -1,8 +1,18 @@
 {
     "Comment": "ステートマシンの説明",
-    "StartAt": "Wait",
+    "StartAt": "Check Running Execution number",
     "States": {
-        "Wait": {
+        "Check Running Execution number": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::aws-sdk:sfn:listExecutions",
+            "Parameters": {
+                "StateMachineArn": "arn:aws:states:ap-northeast-1:106335325643:stateMachine:sdk-test-state-machine",
+                "StatusFilter": "RUNNING"
+            },
+            "ResultPath": "$.executions",
+            "Next": "Wait"
+        },
+         "Wait": {
             "Type": "Wait",
             "Seconds": 300,
             "Next": "Lambda Invoke"

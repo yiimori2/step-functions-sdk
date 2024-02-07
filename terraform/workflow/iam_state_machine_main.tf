@@ -30,6 +30,42 @@ data "aws_iam_policy_document" "state_machine_main_iam_policy_document" {
   statement {
     effect = "Allow"
     actions = [
+      "states:StartExecution",
+      "states:ListExecutions"
+    ]
+    resources = [
+      "arn:aws:states:ap-northeast-1:106335325643:stateMachine:sdk-test-state-machine"
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "states:DescribeExecution",
+      "states:StopExecution"
+    ]
+    resources = [
+      "arn:aws:states:ap-northeast-1:106335325643:execution:sdk-test-state-machine:*"
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "events:PutTargets",
+      "events:PutRule",
+      "events:DescribeRule"
+    ]
+    resources = [
+      "arn:aws:events:ap-northeast-1:106335325643:rule/StepFunctionsGetEventsForStepFunctionsExecutionRule"
+    ]
+  }
+
+
+
+  statement {
+    effect = "Allow"
+    actions = [
       "lambda:InvokeFunction"
     ]
     resources = ["arn:aws:lambda:ap-northeast-1:106335325643:function:hello-world"]
