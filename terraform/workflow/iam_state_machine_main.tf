@@ -32,7 +32,7 @@ data "aws_iam_policy_document" "state_machine_main_iam_policy_document" {
     actions = [
       "lambda:InvokeFunction"
     ]
-    resources = ["arn:aws:lambda:ap-northeast-1:106335325643:hello-world"]
+    resources = ["arn:aws:lambda:ap-northeast-1:106335325643:function:hello-world"]
   }
 }
 
